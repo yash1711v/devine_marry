@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:devine_marry/controller/AuthController/auth_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
@@ -40,6 +41,8 @@ class SplashController extends GetxController implements GetxService {
         Response response = await authRepo.getUserData();
         UserModel user = UserModel.fromJson(response.body['user']);
         if (user.profileComplete == 0) {
+          debugPrint("Profile not complete: ${user.completedStep}");
+
           Get.toNamed(RouteHelper.register);
         } else {
           Get.toNamed(RouteHelper.dashboard);

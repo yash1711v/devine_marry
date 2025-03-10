@@ -6,7 +6,7 @@ import 'package:dotted_border/dotted_border.dart';
 
 class ProfileImageUploader extends StatefulWidget {
   final Function(String) onImageSelected;
-  final String? initialImageUrl; // Network image URL (optional)
+  final String? initialImageUrl; // Can be a file path or a network URL
 
   ProfileImageUploader({super.key, required this.onImageSelected, this.initialImageUrl});
 
@@ -16,6 +16,10 @@ class ProfileImageUploader extends StatefulWidget {
 
 class _ProfileImageUploaderState extends State<ProfileImageUploader> {
   XFile? _selectedImage;
+
+  bool isLocalFile(String path) {
+    return File(path).existsSync(); // Check if it's a local file
+  }
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
@@ -27,7 +31,6 @@ class _ProfileImageUploaderState extends State<ProfileImageUploader> {
       double fileSizeInMB = fileSize / (1024 * 1024); // Convert to MB
 
       if (fileSizeInMB > 2) {
-        // Show SnackBar if image is larger than 2 MB
         showCustomSnackBar("Image size should be less than 2 MB", isError: true);
         return;
       }
@@ -53,7 +56,7 @@ class _ProfileImageUploaderState extends State<ProfileImageUploader> {
           onTap: _pickImage,
           child: DottedBorder(
             borderType: BorderType.RRect,
-            dashPattern: [6, 3], // Dashed line pattern
+            dashPattern: [6, 3],
             strokeWidth: 1.5,
             color: Colors.grey,
             radius: const Radius.circular(8),
@@ -69,7 +72,13 @@ class _ProfileImageUploaderState extends State<ProfileImageUploader> {
                     fit: BoxFit.cover, width: double.infinity),
               )
                   : (widget.initialImageUrl != null && widget.initialImageUrl!.isNotEmpty)
+                  ? isLocalFile(widget.initialImageUrl!)
                   ? ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.file(File(widget.initialImageUrl!),
+                    fit: BoxFit.cover, width: double.infinity),
+              )
+                  : ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(widget.initialImageUrl!,
                     fit: BoxFit.cover, width: double.infinity),

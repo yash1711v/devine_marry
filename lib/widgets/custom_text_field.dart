@@ -78,7 +78,10 @@ class CustomTextField extends StatefulWidget {
     this.arrows = false,
     this.upperLimit,
     this.lowerLimit,
-    this.isFormat, this.isSugarAdding = false, this.suffixIcon, this.underlineColor,
+    this.isFormat,
+    this.isSugarAdding = false,
+    this.suffixIcon,
+    this.underlineColor,
   });
 
   @override
@@ -95,63 +98,62 @@ class CustomTextFieldState extends State<CustomTextField> {
       children: [
         widget.showTitle
             ? Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: Text(
-            widget.hintText,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        )
+                padding: const EdgeInsets.only(left: 5),
+                child: Text(
+                  widget.hintText,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              )
             : const SizedBox(),
         SizedBox(height: widget.showTitle ? 5 : 0),
         TextFormField(
           onTap: widget.onTap,
           validator: widget.validation,
           readOnly: widget.readOnly,
-          maxLines: widget.maxLines,
           maxLength: widget.maxLength,
           controller: widget.controller,
           focusNode: widget.focusNode,
           style: const TextStyle(fontSize: 16),
           textInputAction: widget.inputAction,
-          keyboardType:
-          widget.isAmount ? TextInputType.number : widget.inputType,
+          keyboardType: widget.isAmount ? TextInputType.number : widget.inputType,
           cursorColor: Theme.of(context).primaryColor,
           textCapitalization: widget.capitalization,
           enabled: widget.isEnabled,
           autofocus: false,
-          minLines: widget.maxLines,
+          minLines: 1, // Start with a single line
+          maxLines: widget.maxLines, // Expands up to the defined limit
           obscureText: widget.isPassword ? _obscureText : false,
           inputFormatters: _getInputFormatters(),
           decoration: InputDecoration(
             suffixIcon: widget.suffixIcon,
             suffixText: widget.suffixText,
+            suffixStyle: TextStyle(
+              color: Color(0xFFBA7270),
+              fontSize: 16,
+              fontFamily: 'DM Sans',
+              fontWeight: FontWeight.w500,
+            ),
             counterText: "",
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 width: 2,
-                color: widget.underlineColor ??
-
-                Colors.black.withOpacity(0.30000001192092896),
+                color: widget.underlineColor ?? Colors.black.withOpacity(0.3),
               ),
             ),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 width: 2,
-                color: widget.underlineColor ??
-
-                Colors.black.withOpacity(0.30000001192092896),
+                color: widget.underlineColor ?? Colors.black.withOpacity(0.3),
               ),
             ),
             border: UnderlineInputBorder(
               borderSide: BorderSide(
                 width: 2,
-                color: widget.underlineColor ??
-
-                Colors.black.withOpacity(0.30000001192092896),
+                color: widget.underlineColor ?? Colors.black.withOpacity(0.3),
               ),
             ),
             isDense: true,
@@ -171,9 +173,9 @@ class CustomTextFieldState extends State<CustomTextField> {
         ),
         widget.divider
             ? const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Divider(),
-        )
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Divider(),
+              )
             : const SizedBox(),
       ],
     );
@@ -186,7 +188,6 @@ class CustomTextFieldState extends State<CustomTextField> {
   }
 
   List<TextInputFormatter>? _getInputFormatters() {
-
     if (widget.isFormat == true) {
       return [
         FilteringTextInputFormatter.deny(RegExp(r'\.')),
@@ -195,12 +196,12 @@ class CustomTextFieldState extends State<CustomTextField> {
     return widget.isAmount
         ? [FilteringTextInputFormatter.allow(RegExp(r'\d'))]
         : widget.isNumber
-        ? [
-      FilteringTextInputFormatter.allow(RegExp(r'\d')),
-      LengthLimitingTextInputFormatter(widget.maxLength ?? 10),
-    ]
-        : widget.isPhone
-        ? [FilteringTextInputFormatter.allow(RegExp('[0-9+]'))]
-        : null;
+            ? [
+                FilteringTextInputFormatter.allow(RegExp(r'\d')),
+                LengthLimitingTextInputFormatter(widget.maxLength ?? 10),
+              ]
+            : widget.isPhone
+                ? [FilteringTextInputFormatter.allow(RegExp('[0-9+]'))]
+                : null;
   }
 }

@@ -102,7 +102,7 @@ class CreateScreen extends StatelessWidget {
                                   hintText: 'Looking For',
                                   options: controller.lookingForList.map((looking) => looking.title).toList(),
                                   selectedValue: controller.lookingFor,
-                                  onChanged: (String? value) {
+                                  onChanged: (value) {
                                     controller.updateLookingFor(value ?? "");
                                   },
                                   validator: (value) {
@@ -119,7 +119,7 @@ class CreateScreen extends StatelessWidget {
                                   hintText: 'Marital Status',
                                   options: controller.dataModel.maritalStatuses.map((religions) => religions.title).toList(),
                                   selectedValue: controller.maritalStatus,
-                                  onChanged: (String? value) {
+                                  onChanged: (value) {
                                     controller.updateMaritalStatusFor(value ?? "");
                                   },
                                   validator: (value) {
@@ -166,7 +166,7 @@ class CreateScreen extends StatelessWidget {
                                   hintText: 'Religion',
                                   selectedValue: controller.religion,
                                   options: controller.religionResponse.religions.map((religions) => religions.name).toList(),
-                                  onChanged: (String? value) {
+                                  onChanged: (value) {
                                     controller.updateReligion(value ?? "");
                                     controller.getCastes(controller.religionResponse.religions.firstWhere((element) => element.name == value).id.toString());
                                     controller.updateCaste(null);
@@ -185,7 +185,8 @@ class CreateScreen extends StatelessWidget {
                                   hintText: 'Caste',
                                   selectedValue: controller.caste,
                                   options: controller.casteResponse.castes.map((caste) => caste.name).toList(),
-                                  onChanged: (String? value) {
+                                  onChanged: (value) {
+                                    debugPrint("value ==> $value");
                                     controller.updateCaste(value ?? "");
                                   },
                                   validator: (value) {
@@ -207,7 +208,7 @@ class CreateScreen extends StatelessWidget {
                                   selectedValue: controller.country,
                                   hintText: 'Country',
                                   options: controller.countryResponse.countries.map((country) => country.name).toList(),
-                                  onChanged: (String? value) {
+                                  onChanged: (value) {
                                     controller.updateCountry(value ?? "");
                                     controller.getStates(controller.countryResponse.countries.firstWhere((element) => element.name == value).id.toString());
                                     controller.updateState(null);
@@ -226,7 +227,7 @@ class CreateScreen extends StatelessWidget {
                                   hintText: 'State',
                                   selectedValue: controller.state,
                                   options: controller.stateResponse.states.map((states) => states.name).toList(),
-                                  onChanged: (String? value) {
+                                  onChanged: (value) {
                                     controller.updateState(value ?? "");
                                   },
                                   validator: (value) {
@@ -314,7 +315,8 @@ class CreateScreen extends StatelessWidget {
                                   child: CustomDropdownField(
                                     hintText: 'Gender',
                                     options: controller.dataModel.genders.map((religions) => religions.gender).toList(),
-                                    onChanged: (String? value) {
+                                    selectedValue: controller.gender,
+                                    onChanged: (value) {
                                       controller.updateGender(value ?? "");
                                     },
                                     validator: (value) {
@@ -332,7 +334,7 @@ class CreateScreen extends StatelessWidget {
                           ProfileImageUploader(onImageSelected: (String value) {
                             controller.updateProfilePhoto(value);
 
-                          },),
+                          },initialImageUrl: controller.profilePhoto,),
                           SizedBox(height: 20),
                         ],
                       ),

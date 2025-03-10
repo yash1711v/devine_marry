@@ -27,14 +27,19 @@ class StringTexts {
   //create account screen text
 static const String createAccount = 'Create Account';
 static const String fillDetailsToStartYourJourney = 'Fill Details to start your journey to find the right partner';
+static const String PROFILE_DETAILS = 'PROFILE DETAILS';
+static const String Family_Details = 'Family Details';
 
+//Education Screen Text
+static const String educationAndProfession = 'Education & Profession';
+static const String youCanUpdateTheDataFromProfileScreen = 'You can update the data from profile settings in app';
+static const String EDUCATION_DETAILS = 'EDUCATION DETAILS';
+static const String PROFESSION_DETAIL = 'PROFESSION_DETAIL';
 
-//Registration Screen Text
-
-//CreateScreen
-  static const String PROFILE_DETAILS = 'PROFILE DETAILS';
-  static const String Family_Details = 'Family Details';
-
-
+//Personality Details
+  static const String Personality_Details = 'Personality Details';
+  static const String Personality_Attributes = 'Personality Attributes';
+  static const String YouCanUpdateTheData = 'You can update the data from profile settings in app';
+  static const String Preferrences = 'Preferrences';
 
 }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:devine_marry/controller/AuthController/auth_controller.dart';
+import 'package:devine_marry/views/LoginAndRegistrationScreen/SubScreens/personality_screen.dart';
 import 'package:devine_marry/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,10 @@ import '../../utils/images.dart';
 import '../../utils/string_texts.dart';
 import '../../widgets/common_button.dart';
 import 'SubScreens/create_screen.dart';
+import 'SubScreens/education_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
+
   const RegisterScreen({super.key});
 
   @override
@@ -31,6 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -49,11 +53,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
               controller: authController.pageController,
               children: [
                 CreateScreen(),
+                EducationScreen(),
+                PersonalityScreen(),
               ],
             );
           },
         ),
         bottomNavigationBar: GetBuilder<AuthController>(builder: (controller) {
+          debugPrint("Register Screen ${controller.pageController.page}");
           return Padding(
               padding:
                   const EdgeInsets.only(bottom: 18.0, left: 16.0, right: 16.0),
@@ -69,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }
                       },
                       isLightColor: true,
-                      text: Text("",
+                      text: Text("< Previous",
                           style: TextStyle(color: Colors.white, fontSize: 16)),
                       isShowIcon: false,
                     )),
@@ -81,8 +88,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: CommonButton(
                     onPressed: () {
                       if(controller.currentPage == 0){
-                        debugPrint("Create Account");
                         controller.checkCreateAccountScreen();
+                      } else if(controller.currentPage == 1){
+                        controller.checkEducationScreen();
+                      } else if(controller.currentPage == 2){
+                        controller.checkPersonalityScreen();
                       }
                     },
                     isLightColor: false,

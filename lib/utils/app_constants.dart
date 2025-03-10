@@ -1,4 +1,3 @@
-
 class AppConstants {
   static const String baseUrl = "https://lab7.invoidea.in/divinemarry/api/";
   static const String appName = 'Divine Marry';
@@ -15,6 +14,7 @@ class AppConstants {
   static const String userAttribute = "user-attributes";
   static const String gender = "getgenders";
   static const String castes = "Getcastes";
+  static const String getDegrees = "get-degrees";
   static const String states = "Getstate";
   static const String myProfileUrl = "userData";
   static const String register = "register";
@@ -49,12 +49,13 @@ class AppConstants {
   static const String storeHealthGoal = "store/health-goal";
   static const String fetchHealthGoal = "get/health-goal";
 
-
-
   /// image url ///
-  static const String serviceImageUrl = "https://lab5.invoidea.in/iclinix/public/serviceImage/";
-  static const String branchImageUrl = "https://lab5.invoidea.in/iclinix/public/branch_image/";
-  static const String resourcesImageUrl = "https://lab5.invoidea.in/iclinix/public/diabetic_resource/";
+  static const String serviceImageUrl =
+      "https://lab5.invoidea.in/iclinix/public/serviceImage/";
+  static const String branchImageUrl =
+      "https://lab5.invoidea.in/iclinix/public/branch_image/";
+  static const String resourcesImageUrl =
+      "https://lab5.invoidea.in/iclinix/public/diabetic_resource/";
 
   // Shared Key
   static const String theme = 'theme';
@@ -62,6 +63,4 @@ class AppConstants {
   static const String intro = 'intro';
   static const String token = 'token';
   static const String savedSubscription = 'savedSubscription';
-
-
 }

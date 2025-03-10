@@ -50,6 +50,11 @@ class AuthRepo {
   Future<Response> getCastes(String id) async {
     return await apiClient.postData(AppConstants.castes, {"religion_id":id});
   }
+
+  Future<Response> getDegree() async {
+    return await apiClient.getData(AppConstants.getDegrees,method: 'GET');
+  }
+
   Future<Response> getstates(String id) async {
     return await apiClient.postData(AppConstants.states, {"country_id":id});
   }

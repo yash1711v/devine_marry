@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../views/DashBoardScreen/dash_board_screen.dart';
+import '../views/LoginAndRegistrationScreen/SubScreens/profile_complete_screen.dart';
 import '../views/LoginAndRegistrationScreen/login_screen.dart';
 import '../views/LoginAndRegistrationScreen/otp_screen.dart';
 import '../views/LoginAndRegistrationScreen/registeration_screen.dart';
@@ -43,6 +45,7 @@ class RouteHelper {
   static const String otpVerification = '/otp-verification';
   static const String letsBegin = '/lets-begin';
   static const String dashboard = '/dashboard';
+  static const String   successFullRegisterationScreen = '/successfull-registeration-screen';
   static const String selectSlot = '/select-slot';
   static const String patientDetails = '/patient-details';
   static const String paymentMethod = '/payment-method';
@@ -80,6 +83,7 @@ class RouteHelper {
   static String getLetsBeginRoute() => letsBegin;
 
   static String getDashboardRoute() => dashboard;
+  static String getSuccessFullRegisteration() => successFullRegisterationScreen;
 
   // static String getSelectSlotRoute() => selectSlot;
   static String getSelectSlotRoute(
@@ -151,11 +155,13 @@ class RouteHelper {
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => const SplashScreen()),
     GetPage(name: login, page: () => LoginScreen()),
-    GetPage(name: register, page: () => RegisterScreen()),
+    GetPage(name: register, page: () => RegisterScreen(),),
     GetPage( name: otpVerification,
         page: () => OtpVerificationScreen()),
     GetPage( name: dashboard,
-        page: () => OtpVerificationScreen()),
+        page: () => DashBoardScreen()),
+    GetPage( name: successFullRegisterationScreen,
+        page: () => ProfileCompleteScreen()),
     // GetPage(name: dashboard, page: () => const DashboardScreen(pageIndex: 0)),
     // GetPage(
     //     name: selectSlot,

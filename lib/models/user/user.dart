@@ -84,7 +84,7 @@ class UserModel {
       status: parseValue<int>(json['status'], defaultValue: 0)!,
       kv: parseValue<int>(json['kv'], defaultValue: 0)!,
       profileComplete: parseValue<int>(json['profile_complete']),
-      completedStep: parseValue<int>(json['completed_step']),
+      completedStep: parseValue<int>(json['completed_step'][json['completed_step'].length - 1]),
       totalStep: parseValue<int>(json['total_step']),
       banReason: parseValue<String>(json['ban_reason']),
       image: parseValue<String>(json['image']),
