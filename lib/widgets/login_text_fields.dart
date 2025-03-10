@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class LoginTextField extends StatelessWidget {
-
   final String? hintText;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
@@ -52,56 +51,90 @@ class LoginTextField extends StatelessWidget {
     this.max,
     this.min,
     this.width,
-    this.height, this.validator, required this.focusNode, this.inputFormatters,
+    this.height,
+    this.validator,
+    required this.focusNode,
+    this.inputFormatters,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // width: 380,
-      // height: 50,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        shadows: [
-          BoxShadow(
-            color: Color(0x26000000),
-            blurRadius: 20,
-            offset: Offset(0, 0),
-            spreadRadius: 0,
-          )
-        ],
-      ),
-
-      child: TextFormField(
-        inputFormatters:inputFormatters,
-        validator: validator,
-        controller: controller,
-        keyboardType: keyboardType,
-        obscureText: obscureText ?? false,
-        readOnly: readOnly ?? false,
-        enabled: enabled ?? true,
-        autofocus: autofocus ?? false,
-        onChanged: onChanged,
-        onTap: onTap,
-        onEditingComplete: onEditingComplete,
-        maxLines: maxLines,
-        minLines: minLines,
-        maxLength: maxLength,
-        decoration: InputDecoration(
-          counterText: "",
-          hintText: hintText,
-          hintStyle: TextStyle(
-            color: Color(0xFFBDBDBD),
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          decoration: ShapeDecoration(
+            color: Colors.transparent,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)
+            ),
+            shadows: [
+              BoxShadow(
+                color: Color(0x26000000),
+                blurRadius: 20,
+                offset: Offset(0, 0),
+                spreadRadius: 0,
+              )
+            ],
           ),
-          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          border: InputBorder.none,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
+          child: TextFormField(
+
+            inputFormatters: inputFormatters,
+            validator: validator,
+            controller: controller,
+            keyboardType: keyboardType,
+            obscureText: obscureText ?? false,
+            readOnly: readOnly ?? false,
+            enabled: enabled ?? true,
+            autofocus: autofocus ?? false,
+            onChanged: onChanged,
+            onTap: onTap,
+            onEditingComplete: onEditingComplete,
+            maxLines: maxLines,
+            minLines: minLines,
+            maxLength: maxLength,
+            decoration: InputDecoration(
+              fillColor: Colors.white,
+              filled: true,
+              counterText: "",
+              hintText: hintText,
+              hintStyle: TextStyle(
+                color: Color(0xFFBDBDBD),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+                  borderRadius: BorderRadius.circular(5),
+                  ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
+
+              errorStyle: TextStyle(
+                color: Colors.red, // Set error text color to red
+                backgroundColor: Colors.transparent, // Ensure background is transparent
+                fontSize: 14,
+              ),
+            ),
+          ),
         ),
-      ),
+        const SizedBox(height: 5), // Space for error message
+      ],
     );
   }
 }

@@ -33,15 +33,36 @@ class AuthRepo {
   }
 
   Future<Response> sendOtpRepo(String? phoneNo,) async {
-    return await apiClient.postData(AppConstants.sendOtpUrl, {"mobile":"+91${phoneNo}"});
+    return await apiClient.postData(AppConstants.sendOtpUrl, {"mobile":"$phoneNo"});
+  }
+  Future<Response> getCountries() async {
+    return await apiClient.postData(AppConstants.countries, {});
+  }
+  Future<Response> getreligions() async {
+    return await apiClient.postData(AppConstants.religions, {});
+  }
+  Future<Response> getUserAttributes() async {
+    return await apiClient.postData(AppConstants.userAttribute, {});
+  }
+  Future<Response> getGender() async {
+    return await apiClient.postData(AppConstants.gender, {});
+  }
+  Future<Response> getCastes(String id) async {
+    return await apiClient.postData(AppConstants.castes, {"religion_id":id});
+  }
+  Future<Response> getstates(String id) async {
+    return await apiClient.postData(AppConstants.states, {"country_id":id});
   }
 
+
   Future<Response> verifyOtp(String? phoneNo,String? otp,String? fcmToken) async {
-    return await apiClient.postData(AppConstants.verifyOtpUrl, {"mobile": "+91$phoneNo", "otp" : otp,"fcmToken": fcmToken});
+    return await apiClient.postData(AppConstants.verifyOtpUrl, {
+      "mobile": "$phoneNo",
+      "otp" : otp,"fcmToken": fcmToken});
   }
 
   Future<Response> getUserData() async {
-    return await apiClient.getData(AppConstants.myProfileUrl,method: 'GET');
+    return await apiClient.getData(AppConstants.myProfileUrl,method: 'POST');
   }
 
   Future<Response> getPrivacyPolicy(String data) async {

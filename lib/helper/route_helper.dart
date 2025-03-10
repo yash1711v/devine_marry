@@ -154,6 +154,8 @@ class RouteHelper {
     GetPage(name: register, page: () => RegisterScreen()),
     GetPage( name: otpVerification,
         page: () => OtpVerificationScreen()),
+    GetPage( name: dashboard,
+        page: () => OtpVerificationScreen()),
     // GetPage(name: dashboard, page: () => const DashboardScreen(pageIndex: 0)),
     // GetPage(
     //     name: selectSlot,

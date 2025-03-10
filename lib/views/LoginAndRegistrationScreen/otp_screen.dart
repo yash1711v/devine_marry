@@ -108,7 +108,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen>
                 codeLength: 6,
                 // Change according to your OTP length
                 decoration: BoxLooseDecoration(
-                  hintText: '000000',
+                  hintText: StringTexts.hintText,
                   gapSpace: 10,
                   hintTextStyle: TextStyle(color: Colors.grey, fontSize: 20),
                   bgColorBuilder: FixedColorBuilder(Colors.white),
@@ -122,17 +122,24 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen>
                 },
               ),
               SizedBox(height: 32),
-              CommonButton(
-                isLightColor: true,
-                text: "Next >",
-                onPressed: () {
-                  showCustomSnackBar("Please Wait while we verify your OTP",
-                      isError: false);
-                  Get.toNamed(RouteHelper.register);
-                  // if(_otpController.text.length == 6){
-                  //   Get.find<AuthController>().sendOtpApi();}
-                },
-                isShowIcon: false,
+              GetBuilder<AuthController>(
+                builder: (controller) {
+                  return CommonButton(
+                    isLightColor: true,
+                    text: controller.isLoginLoading?Center(child: CircularProgressIndicator(color: Colors.white,),):Text(StringTexts.next, style: TextStyle(color: Colors.white, fontSize: 16)),
+                    onPressed: () {
+                      // Get.toNamed(RouteHelper.register);
+                      if(_otpController.text.length == 6){
+                        showCustomSnackBar(StringTexts.Please_Wait_while_we_verify_your_OTP,
+                            isError: false,isPending: true);
+                        String otp = _otpController.text;
+                        Get.find<AuthController>().verifyOtpApi(otp);} else {
+                        showCustomSnackBar(StringTexts.Please_enter_a_valid_OTP, isError: true);
+                      }
+                    },
+                    isShowIcon: false,
+                  );
+                }
               ),
             ],
           ),

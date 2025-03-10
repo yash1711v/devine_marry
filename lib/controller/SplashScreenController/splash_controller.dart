@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -8,11 +11,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/repo/auth_repo.dart';
 import '../../helper/date_converter.dart';
 import '../../helper/route_helper.dart';
+import '../../models/user/user.dart';
 
 class SplashController extends GetxController implements GetxService {
   final AuthRepo authRepo;
   final SharedPreferences sharedPreferences;
-  SplashController({required this.authRepo,required this.sharedPreferences, }) ;
+
+  SplashController({
+    required this.authRepo,
+    required this.sharedPreferences,
+  });
 
   @override
   void onInit() {
@@ -21,11 +29,28 @@ class SplashController extends GetxController implements GetxService {
     //isLoggedIn();
 
     Future.delayed(const Duration(seconds: 2), () {
-      Get.toNamed(RouteHelper.login);
+      isLoggedIn();
     });
   }
 
-
+  Future<void> isLoggedIn() async {
+    bool value = await authRepo.isLoggedIn();
+    if (value) {
+      try {
+        Response response = await authRepo.getUserData();
+        UserModel user = UserModel.fromJson(response.body['user']);
+        if (user.profileComplete == 0) {
+          Get.toNamed(RouteHelper.register);
+        } else {
+          Get.toNamed(RouteHelper.dashboard);
+        }
+      } catch (e) {
+        debugPrint("Error: $e");
+      }
+    } else {
+      Get.toNamed(RouteHelper.login);
+    }
+  }
 //
 // Future<bool> isLoggedIn() async {
 //   bool value = await  authRepo.isLoggedIn();
@@ -279,6 +304,4 @@ class SplashController extends GetxController implements GetxService {
 //   update();
 //   return ApiResponse(userData: _userData, patientData: _patientData); // Return the combined response
 // }
-
-
 }

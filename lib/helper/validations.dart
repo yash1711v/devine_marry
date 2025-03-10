@@ -6,8 +6,8 @@ class ValidatorAndInputFormatters {
     return RegExp(pattern).hasMatch(email);
   }
 
-  static bool isValidPhoneNumber(String phone) {
-    final pattern = r'^\+?[0-9]{7,15}\$';
+  static bool isValidIndianPhoneNumber(String phone) {
+    final pattern = r'^[6789]\d{9}$'; // Ensures number starts with 6, 7, 8, or 9 and is exactly 10 digits
     return RegExp(pattern).hasMatch(phone);
   }
 

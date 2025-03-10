@@ -6,7 +6,7 @@ class CommonButton extends StatelessWidget {
   final void Function()? onPressed;
   final bool isLightColor;
   final bool isShowIcon;
-  final String text;
+  final Widget text;
   final double? width;
   final double? height;
   const CommonButton({super.key, this.onPressed, required this.isLightColor, required this.text, this.width = 380, this.height = 55, required this.isShowIcon});
@@ -27,7 +27,7 @@ class CommonButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(text, style: TextStyle(color: Colors.white, fontSize: 16)),
+            text,
             sizedBoxW5(),
             Visibility(
                 visible: isShowIcon,

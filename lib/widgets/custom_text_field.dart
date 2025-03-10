@@ -17,6 +17,7 @@ class CustomTextField extends StatefulWidget {
   final TextCapitalization capitalization;
   final String? prefixImage;
   final IconData? prefixIcon;
+  final Widget? suffixIcon;
   final bool divider;
   final bool showTitle;
   final bool isAmount;
@@ -38,7 +39,8 @@ class CustomTextField extends StatefulWidget {
   final int? upperLimit;
   final int? lowerLimit;
   final bool? isFormat;
-  final bool? isSugarAdding;// New property for disallowing dots
+  final bool? isSugarAdding;
+  final Color? underlineColor; // New property for disallowing dots
 
   const CustomTextField({
     super.key,
@@ -76,7 +78,7 @@ class CustomTextField extends StatefulWidget {
     this.arrows = false,
     this.upperLimit,
     this.lowerLimit,
-    this.isFormat, this.isSugarAdding = false,
+    this.isFormat, this.isSugarAdding = false, this.suffixIcon, this.underlineColor,
   });
 
   @override
@@ -125,24 +127,31 @@ class CustomTextFieldState extends State<CustomTextField> {
           obscureText: widget.isPassword ? _obscureText : false,
           inputFormatters: _getInputFormatters(),
           decoration: InputDecoration(
+            suffixIcon: widget.suffixIcon,
             suffixText: widget.suffixText,
             counterText: "",
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 width: 2,
-                color: Colors.black.withOpacity(0.30000001192092896),
+                color: widget.underlineColor ??
+
+                Colors.black.withOpacity(0.30000001192092896),
               ),
             ),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 width: 2,
-                color: Colors.black.withOpacity(0.30000001192092896),
+                color: widget.underlineColor ??
+
+                Colors.black.withOpacity(0.30000001192092896),
               ),
             ),
             border: UnderlineInputBorder(
               borderSide: BorderSide(
                 width: 2,
-                color: Colors.black.withOpacity(0.30000001192092896),
+                color: widget.underlineColor ??
+
+                Colors.black.withOpacity(0.30000001192092896),
               ),
             ),
             isDense: true,

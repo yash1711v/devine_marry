@@ -34,7 +34,7 @@ class ApiClient extends GetxService {
 
     _mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
-      'Accept' : 'application/json',
+      // 'Accept' : 'application/json',
       'Authorization': 'Bearer $token'
     };
     print("Api main header ================>${_mainHeaders} ");
@@ -125,8 +125,8 @@ class ApiClient extends GetxService {
 
   Future<Response> postData(String uri, dynamic body, {Map<String, String>? headers}) async {
     try {
-      //log('====> API Call: $uri\nHeader: $_mainHeaders');
-      //log('====> API Body: ${jsonEncode(body)}');
+      log('====> API Call: $uri\nHeader: $_mainHeaders');
+      log('====> API Body: ${jsonEncode(body)}');
       var bodyEncoded = json.encode(body);
       // log("Encoded Body==> ${jsonEncode(body)}");
       // log("_mainHeaders: $_mainHeaders");
@@ -135,7 +135,7 @@ class ApiClient extends GetxService {
         body: jsonEncode(body),
         headers: headers ?? _mainHeaders,
       ).timeout(Duration(seconds: timeoutInSeconds));
-      //log('====> API Response: [${response.statusCode}] $uri\n${response.body}');
+      log('====> API Response: [${response.statusCode}] $uri\n${response.body}');
       return handleResponse(response, uri);
     } catch (e) {
       return const Response(statusCode: 1, statusText: noInternetMessage);

@@ -1,16 +1,23 @@
 
 class AppConstants {
-  static const String baseUrl = "https://lab5.invoidea.in/iclinix/public/api/";
+  static const String baseUrl = "https://lab7.invoidea.in/divinemarry/api/";
   static const String appName = 'Divine Marry';
   static const double appVersion = 1.0;
   static const String fontFamily = 'DmSans';
 
   /// Api Url ///
 
-  static const String sendOtpUrl = "authenticate";
+  static const String sendOtpUrl = "check-mobile";
   static const String verifyOtpUrl = "verify-otp";
   static const String updateProfileUrl = "update/my-profile";
-  static const String myProfileUrl = "my-profile";
+  static const String countries = "getcountries";
+  static const String religions = "getreligions";
+  static const String userAttribute = "user-attributes";
+  static const String gender = "getgenders";
+  static const String castes = "Getcastes";
+  static const String states = "Getstate";
+  static const String myProfileUrl = "userData";
+  static const String register = "register";
   static const String privacyUrl = "page/";
   static const String planListUrl = "plan-list";
   static const String clinicListUrl = "clinic-list";
