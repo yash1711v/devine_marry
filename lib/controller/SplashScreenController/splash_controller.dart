@@ -39,10 +39,9 @@ class SplashController extends GetxController implements GetxService {
     if (value) {
       try {
         Response response = await authRepo.getUserData();
+        debugPrint("Response: ${response.body}");
         UserModel user = UserModel.fromJson(response.body['user']);
         if (user.profileComplete == 0) {
-          debugPrint("Profile not complete: ${user.completedStep}");
-
           Get.toNamed(RouteHelper.register);
         } else {
           Get.toNamed(RouteHelper.dashboard);

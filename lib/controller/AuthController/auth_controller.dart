@@ -385,7 +385,7 @@ class AuthController extends GetxController implements GetxService {
     try {
       Response response =
           await authRepo.sendOtpRepo(phoneController.text.trim());
-
+        debugPrint("Response: ${response.body}");
       // var responseData = response.body;
       if (response.body['status']) {
         var responseData = response.body;
@@ -754,7 +754,7 @@ class AuthController extends GetxController implements GetxService {
       };
     } else if(updateType == "basicInfo"){
       bool isHighSchoolOrIntermediate =
-          highestQualification != "High School" && highestQualification == "Intermediate";
+          highestQualification != "High School" && highestQualification != "Intermediate";
       finalMap = {
         "step": "basicInfo",
         "highest_qualification": (dataModel.qualifications
@@ -773,7 +773,8 @@ class AuthController extends GetxController implements GetxService {
         "monthly_income": monthlyIncomeController.text,
         "experience": noOfYears,
       };
-    } else {
+    }
+    else {
 
       List<String> Religion = [];
       List<String> HighestQualification = [];
