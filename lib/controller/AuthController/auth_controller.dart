@@ -16,6 +16,7 @@ import '../../models/user/user.dart';
 import '../../utils/app_constants.dart';
 import '../../widgets/common_loading.dart';
 import '../../widgets/custom_snack_bar.dart';
+import 'package:path/path.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
