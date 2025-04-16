@@ -179,8 +179,8 @@ class AuthController extends GetxController implements GetxService {
     update();
   }
 
-  void updateDisability(String value) {
-    disability = value;
+  void updateDisability(String values) {
+    disability = values;
     update();
   }
   void updatePrefReligion(List<String> value) {
